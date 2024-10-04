@@ -17,6 +17,23 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
 import { BreadcrumbsComponent } from './shared-ui/breadcrumbs/breadcrumbs.component';
 import { ContactComponent } from './contact/contact.component';
+import { Route, RouterModule, Routes } from '@angular/router';
+
+export const ROUTES: Routes = [
+  {
+    path: 'home',
+    component: HomeComponent
+  },
+  {
+    path: '',
+    redirectTo: 'home',
+    pathMatch:  'full'
+  },
+  {
+    path: '**',
+    component: NotFoundComponent
+  }
+]
 
 @NgModule({
   declarations: [
@@ -39,6 +56,9 @@ import { ContactComponent } from './contact/contact.component';
     BrowserAnimationsModule,
     MatMenuModule,
     MatButtonModule,
+    RouterModule.forRoot(ROUTES, {
+      enableTracing: true
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]
